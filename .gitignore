@@ -13,9 +13,7 @@ Podfile.lock
 build/
 DerivedData/
 
-# Xcode specific files
-*.xcworkspace
-*.xcodeproj/project.xcworkspace
+# Xcode specific filesgit 
 *.xcuserdata
 *.xcscmblueprint
 
