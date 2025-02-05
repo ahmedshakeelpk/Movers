@@ -514,8 +514,8 @@ struct MovingNPickingView: View {
                     .font(.system(size: 16, weight: .medium))
                 Spacer()
                 Toggle(isOn: $viewModel.isOnElevatorTimeSlot) {
-                    Text("\(viewModel.isOnElevatorTimeSlot ? "ON" : "OFF")")
-                        .font(.headline)
+//                    Text("\(viewModel.isOnElevatorTimeSlot ? "ON" : "OFF")")
+//                         .font(.headline)
                 }
                 .toggleStyle(SwitchToggleStyle(tint: AppColor.colorTextBlack)) // Customizing the toggle color
             }
@@ -767,7 +767,7 @@ struct MovingNPickingView: View {
         VStack {
             HStack {
                 VStack (alignment: .leading, spacing: 8){
-                    Text("No. of Bedrooms \(viewModel.noOfBed)")
+                    Text("No. of Bedrooms")
                         .font(.system(size: 16, weight: .bold))
                         .multilineTextAlignment(.leading)
                 }
@@ -839,7 +839,7 @@ struct MovingNPickingView: View {
         VStack {
             HStack {
                 VStack (alignment: .leading, spacing: 8){
-                    Text("No. of Movers \(viewModel.noOfMovers)")
+                    Text("No. of Movers")
                         .font(.system(size: 16, weight: .bold))
                         .multilineTextAlignment(.leading)
                 }
@@ -1001,7 +1001,7 @@ struct MovingNPickingView: View {
             .frame(height: 45)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .disabled(viewModel.isFormValid)
+            .disabled(!viewModel.isFormValid)
         }
         .background(.white)
     }

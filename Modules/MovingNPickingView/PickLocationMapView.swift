@@ -72,7 +72,7 @@ struct PickLocationMapView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 20, height: 20)
-                        TextField("Toronto, Ontario", text: $viewModel.textFieldSearchAddress)
+                        TextField("Toronto, Ontario", text: $viewModel.labelAddress)
                             .font(.system(size: 14, weight: .regular))
                             .multilineTextAlignment(.leading) // Align text to the left
                         Image(.cross)
@@ -104,14 +104,14 @@ struct PickLocationMapView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 24, height: 24)
 
-                Text("Erskine Ave")
+                Text(viewModel.labelTitleAddress)
                     .font(.system(size: 16, weight: .regular))
                 
                 Spacer() // Pushes content to the left
             }
             HStack {
                 Spacer().frame(width: 32) // Indents the text
-                Text("211 Erskine Ave, Toronto, ON M4P 1Z5, Canada 211 Erskine Ave, Toronto, ON M4P 1Z5, Canada")
+                Text(viewModel.labelAddress)
                     .font(.system(size: 12, weight: .regular))
                     .foregroundColor(AppColor.colorGrayTextColor)
                 Spacer()
@@ -128,7 +128,7 @@ struct PickLocationMapView: View {
             AddressView
             Button(action: {
                 // Add your action here
-                didClickOnConfirmPickupHandler(viewModel.textFieldSearchAddress, viewModel.latitude, viewModel.longitude)
+                didClickOnConfirmPickupHandler(viewModel.labelAddress, viewModel.latitude, viewModel.longitude)
                 myDismiss()
             }) {
                 VStack {
@@ -155,7 +155,11 @@ struct PickLocationMapView: View {
     }
     
     private func showAutocomplete() {
-        let controller = AutocompleteView(selectedAddress: $viewModel.textFieldSearchAddress, latitude: $viewModel.latitude, longitude: $viewModel.longitude)
+        let controller = AutocompleteView(
+            labelAddress: $viewModel.labelAddress,
+            labelTitle:  $viewModel.labelTitleAddress,
+            latitude: $viewModel.latitude,
+            longitude: $viewModel.longitude)
         // Present the autocomplete view as a sheet
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = windowScene.windows.first {
@@ -206,7 +210,8 @@ struct AutocompleteView: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, GMSAutocompleteViewControllerDelegate {
         func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-            parent.selectedAddress = place.formattedAddress ?? "No address available"
+            parent.labelTitle = place.name ?? "No Place"
+            parent.labelAddress = place.formattedAddress ?? "No address available"
             parent.latitude = place.coordinate.latitude
             parent.longitude = place.coordinate.longitude
             parent.presentationMode.wrappedValue.dismiss() // Dismiss the autocomplete view
@@ -228,7 +233,8 @@ struct AutocompleteView: UIViewControllerRepresentable {
         }
     }
     
-    @Binding var selectedAddress: String
+    @Binding var labelAddress: String
+    @Binding var labelTitle: String
     @Binding var latitude: Double
     @Binding var longitude: Double
     

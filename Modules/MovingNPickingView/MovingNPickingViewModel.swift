@@ -97,6 +97,7 @@ class MovingNPickingViewModel: BaseViewModel {
     }
     
     func setMaximumNumberOfBed() {
+        isShowPropertySize = false
         if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
             maximumNumberOfBed = 3
             maximumNumberOfMover = 3
@@ -114,23 +115,50 @@ class MovingNPickingViewModel: BaseViewModel {
             maximumNumberOfBed = 0
         }
     }
-    @Published var isFormValid: Bool = true
+//    @Published var isFormValid: Bool = true
 
-//    @Published var isFormValid: Bool {
-//        if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-//            return textFieldHomeAddress1.isEmpty
-//        } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-//            return true
-//        } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-//            return true
-//        } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-//            return true
-//        } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
+    var isFormValid: Bool {
+        var isValid = false
+        if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            isValid =
+            !textFieldHomeAddress1.isEmpty
+            &&
+            !textFieldUnitNumberApartment.isEmpty
+            &&
+            noOfBed > 0
+            &&
+            noOfMovers > 0
+            &&
+            floorNumber > 0
+            &&
+            (isOnElevatorTimeSlot ? (selectedFromTime != "00:00 AM" && selectedToTime != "00:00 AM") : true)
+        } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            return false
+        } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            return false
+        } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            isValid =
+            !textFieldHomeAddress1.isEmpty
+            &&
+            (selectedPropertySize.lowercased() != "Select Property Size".lowercased())
+            &&
+            noOfMovers > 0
+            &&
+            (isOnElevatorTimeSlot ? (selectedFromTime != "00:00 AM" && selectedToTime != "00:00 AM") : true)
+        } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            isValid =
+            !textFieldHomeAddress1.isEmpty
+            &&
+            (selectedPropertySize.lowercased() != "Select Property Size".lowercased())
+            &&
+            noOfMovers > 0
+            &&
+            floorNumber > 0
+            &&
+            (isOnElevatorTimeSlot ? (selectedFromTime != "00:00 AM" && selectedToTime != "00:00 AM") : true)
+        }
+        return isValid
+    }
     
     func getPlaceHolderForUnit() -> String {
         return "Enter Your \(selectedPropertyType) Number"

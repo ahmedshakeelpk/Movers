@@ -64,12 +64,6 @@ class DropOffLocationViewModel: BaseViewModel {
 
     var selectedTextFieldIndex: Int = 1
     
-    override init() {
-        super.init()
-        getPropertyTypes()
-        getPricing()
-    }
-    
     var modelResponsePropertyTypes: ModelResponsePropertyTypes? {
         didSet {
             
@@ -80,6 +74,12 @@ class DropOffLocationViewModel: BaseViewModel {
         didSet {
             
         }
+    }
+    
+    override init() {
+        super.init()
+        getPropertyTypes()
+        getPricing()
     }
     
     func getPropertyTypes() {
@@ -103,6 +103,74 @@ class DropOffLocationViewModel: BaseViewModel {
         }
     }
     
+    func setMaximumNumberOfBed() {
+        isShowPropertySize = false
+        if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            maximumNumberOfBed = 3
+            maximumNumberOfMover = 3
+        } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            maximumNumberOfBed = 4
+            maximumNumberOfMover = 4
+        } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            maximumNumberOfBed = 4
+            maximumNumberOfMover = 4
+        } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            maximumNumberOfBed = 0
+        } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            maximumNumberOfBed = 0
+        } else {
+            maximumNumberOfBed = 0
+        }
+    }
+//    @Published var isFormValid: Bool = true
+
+    var isFormValid: Bool {
+        var isValid = false
+        if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            isValid =
+            !textFieldHomeAddress1.isEmpty
+            &&
+            !textFieldUnitNumberApartment.isEmpty
+            &&
+            noOfBed > 0
+            &&
+            noOfMovers > 0
+            &&
+            floorNumber > 0
+            &&
+            (isOnElevatorTimeSlot ? (selectedFromTime != "00:00 AM" && selectedToTime != "00:00 AM") : true)
+        } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            return false
+        } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            return false
+        } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            isValid =
+            !textFieldHomeAddress1.isEmpty
+            &&
+            (selectedPropertySize.lowercased() != "Select Property Size".lowercased())
+            &&
+            noOfMovers > 0
+            &&
+            (isOnElevatorTimeSlot ? (selectedFromTime != "00:00 AM" && selectedToTime != "00:00 AM") : true)
+        } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+            isValid =
+            !textFieldHomeAddress1.isEmpty
+            &&
+            (selectedPropertySize.lowercased() != "Select Property Size".lowercased())
+            &&
+            noOfMovers > 0
+            &&
+            floorNumber > 0
+            &&
+            (isOnElevatorTimeSlot ? (selectedFromTime != "00:00 AM" && selectedToTime != "00:00 AM") : true)
+        }
+        return isValid
+    }
+    
+    func getPlaceHolderForUnit() -> String {
+        return "Enter Your \(selectedPropertyType) Number"
+    }
+    
     func getPricing() {
         APIs.getAPI(apiName: .pricing) { responseData, success, errorMsg, statusCode  in
             if success { }
@@ -122,28 +190,5 @@ class DropOffLocationViewModel: BaseViewModel {
                 print("Error decoding data: \(error.localizedDescription)")
             }
         }
-    }
-    
-    func setMaximumNumberOfBed() {
-        if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 3
-            maximumNumberOfMover = 3
-        } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 4
-            maximumNumberOfMover = 4
-        } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 4
-            maximumNumberOfMover = 4
-        } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 0
-        } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 0
-        } else {
-            maximumNumberOfBed = 0
-        }
-    }
-    
-    func getPlaceHolderForUnit() -> String {
-        return "Enter Your \(selectedPropertyType) Number"
     }
 }

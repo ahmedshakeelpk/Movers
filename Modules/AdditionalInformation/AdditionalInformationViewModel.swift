@@ -20,4 +20,7 @@ class AdditionalInformationViewModel: BaseViewModel {
 
     @Published var navigateToDropOffLocationView: Bool = false
 
+    var isFormValid: Bool {
+        return (selectedDateString != "DD/MM/YYYY" && selectedTimeString != "HH:MM")
+    }
 }

@@ -14,6 +14,7 @@ DerivedData/
 # Xcode specific filesgit 
 
 *.xcodeproj/
+*.xcworkspace/
 
 
 

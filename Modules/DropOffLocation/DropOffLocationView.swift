@@ -965,7 +965,6 @@ struct DropOffLocationView: View {
                 kNoOfMoversDropOff = viewModel.noOfMovers
                 kSelectedPropertySizeDropOff = viewModel.selectedPropertySize
                 
-                
                 for index in arrayNumberOfStops {
                     if index == 0 {
                         kArrayLocationsDropOff.append(viewModel.textFieldHomeAddress1)
@@ -1001,6 +1000,7 @@ struct DropOffLocationView: View {
             .frame(height: 45)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
+            .disabled(!viewModel.isFormValid)
         }
         .background(.white)
     }
