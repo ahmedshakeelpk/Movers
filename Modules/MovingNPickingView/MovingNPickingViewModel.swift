@@ -115,22 +115,19 @@ class MovingNPickingViewModel: BaseViewModel {
         }
     }
     
-    func isFormNotValid() {
+    @Published var isFormValid: Bool {
         if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 3
-            maximumNumberOfMover = 3
+            return textFieldHomeAddress1.isEmpty
         } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 4
-            maximumNumberOfMover = 4
+            return true
         } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 4
-            maximumNumberOfMover = 4
+            return true
         } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 0
+            return true
         } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            maximumNumberOfBed = 0
+            return true
         } else {
-            maximumNumberOfBed = 0
+            return false
         }
     }
     

@@ -7,8 +7,7 @@ Pods/
 Podfile.lock
 
 # Xcode-specific files
-*.xcworkspace
-*.xcodeproj
+
 
 # Ignore build artifacts
 build/
