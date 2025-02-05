@@ -1001,7 +1001,7 @@ struct MovingNPickingView: View {
             .frame(height: 45)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .disabled($viewModel.isFormNotValid())
+            .disabled(viewModel.isFormValid)
         }
         .background(.white)
     }

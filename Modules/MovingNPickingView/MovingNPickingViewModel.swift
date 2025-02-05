@@ -114,22 +114,23 @@ class MovingNPickingViewModel: BaseViewModel {
             maximumNumberOfBed = 0
         }
     }
-    
-    @Published var isFormValid: Bool {
-        if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            return textFieldHomeAddress1.isEmpty
-        } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            return true
-        } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            return true
-        } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            return true
-        } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
-            return true
-        } else {
-            return false
-        }
-    }
+    @Published var isFormValid: Bool = true
+
+//    @Published var isFormValid: Bool {
+//        if slapOne.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+//            return textFieldHomeAddress1.isEmpty
+//        } else if slapTwo.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+//            return true
+//        } else if slapThree.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+//            return true
+//        } else if slapFour.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+//            return true
+//        } else if slapFive.map({ $0.lowercased() }).contains(selectedPropertyType.lowercased()) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     
     func getPlaceHolderForUnit() -> String {
         return "Enter Your \(selectedPropertyType) Number"

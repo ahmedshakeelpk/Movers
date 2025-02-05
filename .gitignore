@@ -1,7 +1,3 @@
-# Ignore build artifacts
-build/
-DerivedData/
-
 # Ignore Pods and dependencies
 Pods/
 Podfile.lock
@@ -13,9 +9,16 @@ Podfile.lock
 build/
 DerivedData/
 
+
+
 # Xcode specific filesgit 
 *.xcuserdata
 *.xcscmblueprint
+
+
+
+
+
 
 # Ignore CocoaPods
 Pods/
