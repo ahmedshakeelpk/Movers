@@ -1,0 +1,30 @@
+# Ignore build artifacts
+build/
+DerivedData/
+
+# Ignore Pods and dependencies
+Pods/
+Podfile.lock
+
+# Xcode-specific files
+*.xcworkspace
+*.xcodeproj
+
+# Ignore build artifacts
+build/
+DerivedData/
+
+# Xcode specific files
+*.xcworkspace
+*.xcodeproj/project.xcworkspace
+*.xcuserdata
+*.xcscmblueprint
+
+# Ignore CocoaPods
+Pods/
+Podfile.lock
+
+git s
+
+# Ignore system files
+.DS_Store

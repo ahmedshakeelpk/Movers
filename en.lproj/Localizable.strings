@@ -1,0 +1,11 @@
+/*
+  Localizable.strings
+  Movers
+
+  Created by Shakeel Ahmed on 02/01/2025.
+  
+*/
+
+hello_world = "Hello, world!";
+change_language = "Change Language";
+
