@@ -13,6 +13,7 @@ DerivedData/
 
 # Xcode specific filesgit 
 
+*.xcodeproj/
 
 
 
