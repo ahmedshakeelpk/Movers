@@ -13,15 +13,11 @@ DerivedData/
 
 # Xcode specific filesgit 
 
-<<<<<<< HEAD
-*.xcodeproj/
-*.xcworkspace/
-=======
+
 .xcuserstate
 .xcodeproj
-Movers.xcworkspace/
+.xcworkspace/
 
->>>>>>> 5954b2f (x)
 
 
 
