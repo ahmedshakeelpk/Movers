@@ -13,8 +13,15 @@ DerivedData/
 
 # Xcode specific filesgit 
 
+<<<<<<< HEAD
 *.xcodeproj/
 *.xcworkspace/
+=======
+.xcuserstate
+.xcodeproj
+Movers.xcworkspace/
+
+>>>>>>> 5954b2f (x)
 
 
 
@@ -23,7 +30,6 @@ DerivedData/
 Pods/
 Podfile.lock
 
-git s
 
 # Ignore system files
 .DS_Store
