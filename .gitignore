@@ -15,7 +15,10 @@ DerivedData/
 
 
 .xcuserstate
+
 .xcodeproj
+.xcworkspace
+.xcodeproj/
 .xcworkspace/
 
 
