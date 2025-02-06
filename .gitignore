@@ -14,7 +14,8 @@ DerivedData/
 # Xcode specific filesgit 
 
 
-.xcuserstate/
+*.xcuserstate
+xcuserdata/
 
 .xcodeproj
 .xcworkspace
