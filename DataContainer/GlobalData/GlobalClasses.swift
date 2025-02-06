@@ -15,4 +15,3 @@ class Icons {
         case warningIcon2 = "ic_warning2"
     }
 }
-
